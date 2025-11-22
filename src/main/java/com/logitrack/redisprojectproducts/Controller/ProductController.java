@@ -23,9 +23,19 @@ public class ProductController {
         return productService.getProductById(id);
     }
 
-    // إضافة منتج
     @PostMapping
     public Product createProduct(@RequestBody Product product) {
         return productService.saveProduct(product);
+    }
+
+    @PutMapping("/{id}")
+    public Product updateProduct(@PathVariable Long id, @RequestBody Product productDetails) {
+        return productService.updateProduct(id, productDetails);
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteProduct(@PathVariable Long id) {
+        productService.deleteProduct(id);
+        return "Product deleted successfully!";
     }
 }
